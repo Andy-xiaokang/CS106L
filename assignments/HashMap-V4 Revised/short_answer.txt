@@ -1,0 +1,30 @@
+Assignment 2: STL HashMap (short answer questions)
+Names: kang xiao
+
+1. node *, because we want to manipulate the _buckets_array
+
+2. the key can't be changed and unique for hashmap
+
+3. it is preferable to call m.find(k), because the complexity of m.find(k) is O(1) while  std::find(m.begin(), m.end(), k) is O(n)
+
+4. because the destructor will call clear() member function to free all memory allocated to the hashmap
+
+5. the HashMapIterator instance can only be initialized by HashMap class, the begin() and end() member function will call make_iterator
+   to call the constructor of HashMapIterator
+
+6. set private member _node = _node->next; and if _node == nullptr, go to the next bucket return the first not null iterator
+
+7. because when call map[key] and the key don't exist in the map, it will insert({key, {}}) in the map, which will change the state of the
+   map. so it don't need the const version
+
+8. std::ostream& operator<<(std::ostream& os, const HashMap<K, M, H>& rhs),
+   * it will change the os parameter, so pass by reference
+   * it return os and allows chaining, so it reture ostream&
+   * it won't change the state of rhs(HashMap instance), so rhs const-reference
+   * not friend function of HashMap because it don't access the private variable
+
+9. because the hashmap has some memory allocated in heap, such as insert() member function
+   the HashMapIterator member don't
+
+10. because the member of rhs may be lvalue, the assignment of lvalue member may use copy
+    instead of move. so we need to use std::move to transfer the lvalue member to rvalue.
